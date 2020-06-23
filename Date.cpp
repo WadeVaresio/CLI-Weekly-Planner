@@ -1,7 +1,3 @@
-//
-// Created by wade on 6/10/20.
-//
-
 #include "Date.h"
 
 Date::Date(){

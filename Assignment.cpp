@@ -1,7 +1,3 @@
-//
-// Created by wade on 6/10/20.
-//
-
 #include "Assignment.h"
 
 Assignment::Assignment() {
@@ -19,3 +15,5 @@ Assignment::Assignment(std::string name, std::string details, Date dueDate) {
 bool Assignment::operator==(Assignment &compare) const{
   return this->name == compare.name && this->details == compare.details && this->dueDate == compare.dueDate;
 }
+
+Date Assignment::getDueDate(){ return this->dueDate; }

@@ -1,48 +1,44 @@
 #include <iostream>
 #include "Assignment.h"
-#include "HashTable.h"
 #include "Date.h"
+#include "AssignmentManager.h"
 
-void parseAssignment();
+Assignment parseAssignment();
 
 int main() {
-  Date testDate = Date();
-  Assignment testAssignment = Assignment("test", "test", testDate);
-  Assignment test2 = Assignment("test2", "foo bar", testDate);
+  AssignmentManager manager;
 
-  HashTable<Assignment> ht;
-  ht.insert(testAssignment,1);
-  ht.insert(test2, 1);
+  int selection = 0;
+  std::cout << "CLI Homework Assignment Manager" << std::endl;
+  std::cout << "Select an option: \n1: Add Assignment \n2: Quit" << std::endl;
+  std::cin >> selection;
 
-  bool b = ht.search(testAssignment, 1);
+  // TODO convert hard coded numbers into external definitions header file
+  while(selection != 2){
+    switch(selection){
+      case 1:
+      {
+        Assignment a = parseAssignment();
+        manager.addAssignment(a);
+        break;
+      }
+      default:
+        break;
+    }
 
-//  int selection;
-//  std::cout << "CLI Homework Assignment Manager" << std::endl;
-//  std::cout << "Select an option: \n1: Add Assignment \n2: Quit" << std::endl;
-//  std::cin >> selection;
-//
-//  while(selection != 2){
-//    switch(selection){
-//      case 1:
-//        parseAssignment();
-//        break;
-//      default:
-//        break;
-//
-//    }
-//
-//    std::cin >> selection;
-//  }
+    std::cout << "Select an option: \n1: Add Assignment \n2: Quit" << std::endl;
+    std::cin >> selection;
+  }
 
   return 0;
 }
 
 
-void parseAssignment(){
+Assignment parseAssignment(){
   std::string assignmentName, assignmentDetails;
   unsigned int year, month, day;
 
-  std::cout << "Enter Due Date: ";
+  std::cout << "Enter Due Date (Month, Day, Year): ";
   std::cin >> month;
   std::cin >> day;
   std::cin >> year;
@@ -53,5 +49,5 @@ void parseAssignment(){
   std::cout << "Enter Assignment Details: ";
   std::cin >> assignmentDetails;
 
-  Assignment newAssignment(assignmentName, assignmentDetails, Date(year, month, day));
+  return Assignment(assignmentName, assignmentDetails, Date(year, month, day));
 }

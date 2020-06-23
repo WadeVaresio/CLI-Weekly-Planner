@@ -12,6 +12,8 @@ public:
 
   bool operator==(Assignment&) const;
 
+  Date getDueDate();
+
 private:
   std::string name;
   std::string details;

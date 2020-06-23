@@ -1,10 +1,8 @@
-//
-// Created by wade on 6/13/20.
-//
-
 #ifndef WEEKLY_CALENDAR_ASSIGNMENTMANAGER_H
 #define WEEKLY_CALENDAR_ASSIGNMENTMANAGER_H
 
+#include "HashTable.h"
+#include "Assignment.h"
 
 class AssignmentManager {
 public:
@@ -12,10 +10,14 @@ public:
 
   int getNumEntries();
 
+  bool addAssignment(Assignment&);
+
+  int generateKey(Assignment&);
+
 
 private:
   int entries;
+  HashTable<Assignment> assignments;
 };
-
 
 #endif //WEEKLY_CALENDAR_ASSIGNMENTMANAGER_H
