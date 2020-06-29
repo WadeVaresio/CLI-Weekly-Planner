@@ -1,10 +1,10 @@
 #include "AssignmentManager.h"
 
 AssignmentManager::AssignmentManager() {
-  this->entries = 0;
   this->assignments = HashTable<Assignment>();
   // TODO change path
   this->logFileName = "../assignments.txt"; // TODO determine better way of storing files. Perhaps in a database?
+  this->logEntries = true;
 }
 
 bool AssignmentManager::addAssignment(Assignment &entry) {
@@ -12,7 +12,8 @@ bool AssignmentManager::addAssignment(Assignment &entry) {
 
   assignments.insert(entry, key);
 
-  this->writeAssignmentToFile(entry);
+  if(this->logEntries)
+    this->writeAssignmentToFile(entry);
 
   return true;
 }
@@ -35,3 +36,28 @@ bool AssignmentManager::writeAssignmentToFile(Assignment &assignment) {
 
   return true;
 }
+
+void AssignmentManager::loadAssignments() {
+  std::ifstream inputFile(this->logFileName);
+  this->logEntries = false; // Don't add the loaded assignment back to the file!
+
+  while(!inputFile.eof()){
+    std::string date, name, details;
+    char delimiter = ',';
+
+    try{
+      std::getline(inputFile, date, delimiter);
+      std::getline(inputFile, name, delimiter);
+      std::getline(inputFile, details, '\n');
+    }catch(std::stringstream::failure){
+      std::cout << "Failed to load assignment" << std::endl;
+    }
+
+    Assignment loadedAssignment(name, details, Date(date));
+    this->addAssignment(loadedAssignment);
+  }
+
+  this->logEntries = true; // start logging subsequent assignment entries
+}
+
+int AssignmentManager::getNumberOfEntries() { return this->assignments.getNumberOfEntries();}

@@ -19,10 +19,12 @@ public:
 
   void loadAssignments();
 
+  int getNumberOfEntries();
+
 private:
-  int entries;
   HashTable<Assignment> assignments;
   std::string logFileName;
+  bool logEntries;
 };
 
 #endif //WEEKLY_CALENDAR_ASSIGNMENTMANAGER_H

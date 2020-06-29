@@ -58,6 +58,8 @@ public:
     }
   }
 
+  int getNumberOfEntries(){ return this->entries; }
+
 private:
   //TODO fix resizeTable()
   void resizeTable(){

@@ -8,6 +8,8 @@ Assignment parseAssignment();
 int main() {
   AssignmentManager manager;
 
+  manager.loadAssignments(); // load any saved assignments
+
   int selection = 0;
   std::cout << "CLI Homework Assignment Manager" << std::endl;
   std::cout << "Select an option: \n1: Add Assignment \n2: Quit" << std::endl;
