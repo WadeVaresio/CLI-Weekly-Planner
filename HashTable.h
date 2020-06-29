@@ -14,7 +14,7 @@ public:
   HashTable<T>(){
     this->entries = 0;
     this-> size = this->initialSize;
-    table = new TableEntry*[this->initialSize]; // Array of TableEntry pointers
+    this->table = new TableEntry*[this->initialSize]; // Array of TableEntry pointers
 
     for(int i = 0; i < this->initialSize; i++){
       table[i] = nullptr;
@@ -61,19 +61,18 @@ public:
   int getNumberOfEntries(){ return this->entries; }
 
 private:
-  //TODO fix resizeTable()
   void resizeTable(){
     size += 5;
 
-    T** tempTable = new T*[size];
+    auto resizedTable = new TableEntry*[size];
+    TableEntry** tempTable = table;
 
     for(int i = 0; i < size - 5; i++){
-//      tempTable[i] = table[i];
-        TableEntry* t = table[i];
+      resizedTable[i] = table[i];
     }
 
-    //table = tempTable;
-    delete[] tempTable;
+    this->table = resizedTable;
+    delete[] tempTable; // Delete the original table
   }
 
   int hash(int hashableKey){
@@ -82,7 +81,7 @@ private:
 
   int initialSize = 5;
   int entries, size;
-  TableEntry **table;
+  TableEntry **table; // Array of pointers
   LinkedList<int> keys; // keep track of all keys
 };
 
