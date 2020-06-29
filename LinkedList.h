@@ -47,8 +47,7 @@ public:
     return entries;
   }
 
-  // TODO Fix implementation, currently incorrect doesn't handle all cases
-  bool remove(T target){
+  bool search(T target){
     Node * cur = head;
 
     while(cur != nullptr){

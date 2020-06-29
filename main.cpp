@@ -16,12 +16,12 @@ int main() {
   // TODO convert hard coded numbers into external definitions header file
   while(selection != 2){
     switch(selection){
-      case 1:
-      {
+      case 1: {
         Assignment a = parseAssignment();
         manager.addAssignment(a);
         break;
       }
+
       default:
         break;
     }
@@ -44,10 +44,12 @@ Assignment parseAssignment(){
   std::cin >> year;
 
   std::cout << "Enter Assignment Name: ";
-  std::cin >> assignmentName;
+  std::cin.ignore();
+  std::getline(std::cin, assignmentName);
 
   std::cout << "Enter Assignment Details: ";
-  std::cin >> assignmentDetails;
+  std::cin.ignore();
+  std::getline(std::cin, assignmentDetails);
 
   return Assignment(assignmentName, assignmentDetails, Date(year, month, day));
 }

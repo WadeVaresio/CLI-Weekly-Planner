@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Assignment.h"
 
 Assignment::Assignment() {
@@ -17,3 +18,15 @@ bool Assignment::operator==(Assignment &compare) const{
 }
 
 Date Assignment::getDueDate(){ return this->dueDate; }
+
+std::string Assignment::getDueDateAsString() {
+  std::stringstream ss;
+
+  ss << this->dueDate.getMonth() << "/" << this->dueDate.getDay() << "/" << this->dueDate.getYear();
+
+  return ss.str();
+}
+
+std::string Assignment::getName(){ return this->name; }
+
+std::string Assignment::getDetails(){ return this->details; }

@@ -14,9 +14,14 @@ public:
 
   Date getDueDate();
 
+  std::string getDueDateAsString();
+
+  std::string getName();
+
+  std::string getDetails();
+
 private:
-  std::string name;
-  std::string details;
+  std::string name, details;
   Date dueDate;
 };
 
